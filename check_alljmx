@@ -1,6 +1,8 @@
+
 #!/bin/bash
 #
 # Nagios plugin to monitor Java JMX (http://java.sun.com/jmx)attributes.
+# MODIFY BY: Fernando Sierra (nandex)
 #
 RDIR=`dirname $0`
 
@@ -17,7 +19,9 @@ done
 
 
 util="-U service:jmx:rmi:///jndi/rmi://$host:$port/jmxrmi"
-/usr/java/jdk1.8.0_111/bin/java -cp $RDIR/jmxqueryALL.jar org.nagios.JMXQuery $util
+#JAVA 1.8 
+
+java -cp $RDIR/jmxqueryALL.jar org.nagios.JMXQuery $util
 
 
 
