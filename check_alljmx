@@ -1,0 +1,23 @@
+#!/bin/bash
+#
+# Nagios plugin to monitor Java JMX (http://java.sun.com/jmx)attributes.
+#
+RDIR=`dirname $0`
+
+while getopts "H:p:" arg; do
+  case $arg in
+    H)
+      host=$OPTARG
+      ;;
+    p)
+      port=$OPTARG
+      ;;
+  esac
+done
+
+
+util="-U service:jmx:rmi:///jndi/rmi://$host:$port/jmxrmi"
+/usr/java/jdk1.8.0_111/bin/java -cp $RDIR/jmxqueryALL.jar org.nagios.JMXQuery $util
+
+
+
